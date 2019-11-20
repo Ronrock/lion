@@ -103,6 +103,18 @@ export class OverlayController {
    * @param {OverlayConfig} cfgToAdd
    */
   updateConfig(cfgToAdd) {
+    // only updating the viewportConfig
+    if (Object.keys(cfgToAdd).length === 1 && Object.keys(cfgToAdd)[0] === 'viewportConfig') {
+      this.updateViewportConfig(cfgToAdd.viewportConfig);
+      return;
+    }
+
+    // only updating the popperConfig
+    if (Object.keys(cfgToAdd).length === 1 && Object.keys(cfgToAdd)[0] === 'popperConfig') {
+      this.updatePopperConfig(cfgToAdd.popperConfig);
+      return;
+    }
+
     // Teardown all previous configs
     this._handleFeatures({ phase: 'teardown' });
 
@@ -548,6 +560,12 @@ export class OverlayController {
       await this.__createPopperInstance();
       this._popper.update();
     }
+  }
+
+  updateViewportConfig(newConfig) {
+    this._handlePosition({ phase: 'hide' });
+    this.viewportConfig = newConfig;
+    this._handlePosition({ phase: 'show' });
   }
 
   teardown() {
