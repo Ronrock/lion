@@ -26,6 +26,7 @@ import '../packages/steps/stories/index.stories.js';
 import '../packages/localize/stories/index.stories.js';
 import '../packages/overlays/stories/index.stories.js';
 import '../packages/popup/stories/index.stories.js';
+import '../packages/dialog/stories/index.stories.js';
 import '../packages/tooltip/stories/index.stories.js';
 import '../packages/calendar/stories/index.stories.js';
 
