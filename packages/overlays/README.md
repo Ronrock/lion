@@ -2,15 +2,15 @@
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
-Supports different types of overlays like dialogs, toasts, tooltips, dropdown, etc...
+Supports different types of overlays like dialogs, toasts, tooltips, dropdown, etc.
+
 Manages their position on the screen relative to other elements, including other overlays.
 
 ## Features
 
-- [**Overlays Manager**](./docs/OverlaysManager.md), a global repository keeping track of all different types of overlays.
-- [**Overlays System: Scope**](./docs/OverlaySystemScope.md), outline of all possible occurrences of overlays. Divided into two main types:
-  - [**Global Overlay Controller**](./docs/GlobalOverlayController.md), controller for overlays relative to the viewport.
-  - [**Local Overlay Controller**](./docs/LocalOverlayController.md), controller for overlays positioned next to invokers they are related to.
+- [**Overlays Manager**](./docs/OverlaysManager.md), a global repository keeping track of all different types of overlays
+- [**OverlayController**](./docs/OverlayController.md), a single controller class for handling overlays
+- **OverlayMixin**, a mixin that can be used to create webcomponents that use the OverlayController under the hood
 
 ## How to use
 
@@ -23,18 +23,20 @@ npm i --save @lion/overlays
 ### Example
 
 ```js
-import { overlays } from '@lion/overlays';
+import { OverlayController } from '@lion/overlays';
 
-const myCtrl = overlays.add(
-  new OverlayTypeController({
-    /* options */
-  }),
-);
-// name OverlayTypeController is for illustration purpose only
-// please read below about existing classes for different types of overlays
+const ctrl = new OverlayController({
+  ...withModalDialogConfig(),
+  invokerNode,
+  contentNode,
+});
 ```
 
-## Rationals
+## Rationales
 
-- No `aria-controls`: as support for it is not quite there yet
-- No `aria-haspopup` People knowing the haspop up and hear about it don’t expect a dialog to open (at this moment in time) but expect a sub-menu. Until support for the dialog value has better implementation, it’s probably best to not use aria-haspopup on the element that opens the modal dialog.
+For rationales, please check the [docs](./docs) folder, where we go into large detail!
+
+### Aria roles
+
+- No `aria-controls` as support for it is not quite there yet
+- No `aria-haspopup`. People knowing the haspop up and hear about it don’t expect a dialog to open (at this moment in time) but expect a sub-menu. Until support for the dialog value has better implementation, it’s probably best to not use aria-haspopup on the element that opens the modal dialog.
