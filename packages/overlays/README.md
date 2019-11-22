@@ -2,6 +2,8 @@
 
 [//]: # 'AUTO INSERT HEADER PREPUBLISH'
 
+> Note: Migrating from the old system (`overlays.add(new SomeController({...}))`)? Please check out our [migration guidelines](./docs/migration.md)
+
 Supports different types of overlays like dialogs, toasts, tooltips, dropdown, etc.
 
 Manages their position on the screen relative to other elements, including other overlays.
